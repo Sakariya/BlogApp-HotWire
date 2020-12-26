@@ -1,0 +1,17 @@
+<%= turbo_stream_from @blog %>
+
+<%= turbo_frame_tag 'blog' do %>
+  <%= render @blog %>
+  <%= link_to 'Edit', edit_blog_path(@blog) %> |
+  <%= link_to 'Back', blogs_path, 'data-turbo-frame': :_top %>
+<% end %>
+
+<div id="comments">
+  <h2>Comments</h2>
+  <%= render @blog.comments %>
+</div>
+
+<%#= link_to 'New comment', new_blog_comment_path(@blog) %>
+
+<%= turbo_frame_tag 'new_comment', src: new_blog_comment_path(@blog), target: :_top %>
+
